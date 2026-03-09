@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evoltron - Digital Marketing Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #FAFAFA;
+      --text-main: #111111;
+      --text-muted: #555555;
+      --accent-color: #0A2540;
+      --accent-hover: #004280;
+      --border-color: #EAEAEA;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --container-width: 1200px;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+      --spacing-xl: 6rem;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    p { margin-bottom: 1rem; color: var(--text-muted); }
+    a { color: var(--accent-color); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent-hover); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+    section { padding: var(--spacing-xl) 0; }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background-color: var(--accent-color); color: #fff; }
+    .btn-primary:hover { background-color: var(--accent-hover); color: #fff; }
+    .btn-secondary { background-color: transparent; color: var(--accent-color); border-color: var(--accent-color); }
+    .btn-secondary:hover { background-color: var(--accent-color); color: #fff; }
+    header {
+      padding: var(--spacing-md) 0;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-color);
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
+    nav ul { display: flex; gap: var(--spacing-md); align-items: center; }
+    nav a { color: var(--text-main); font-weight: 500; }
+    nav a:hover { color: var(--accent-color); }
+    .hero {
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      background: url('https://picsum.photos/seed/evoltron/1920/1080') center/cover no-repeat;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 37, 64, 0.8);
+    }
+    .hero .container {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      max-width: 800px;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .hero h1 { font-size: 4rem; color: #fff; margin-bottom: 1.5rem; }
+    .hero p { font-size: 1.25rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+    .card {
+      background: #fff;
+      padding: var(--spacing-md);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; color: var(--accent-color); }
+    .card h3 { font-size: 1.25rem; }
+    .text-image .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-lg);
+      align-items: center;
+    }
+    .text-image.reverse .container { direction: rtl; }
+    .text-image.reverse .text-content { direction: ltr; }
+    .text-image img { border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .cta-banner { background-color: var(--accent-color); color: #fff; text-align: center; }
+    .cta-banner h2 { color: #fff; }
+    .cta-banner p { color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 2rem; }
+    .faq-list { max-width: 800px; margin: var(--spacing-lg) auto 0; }
+    .faq-item { border-bottom: 1px solid var(--border-color); }
+    .faq-summary {
+      padding: var(--spacing-md) 0;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.125rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-summary::-webkit-details-marker { display: none; }
+    .faq-summary::after { content: '+'; font-size: 1.5rem; color: var(--accent-color); }
+    details[open] .faq-summary::after { content: '−'; }
+    .faq-content { padding-bottom: var(--spacing-md); color: var(--text-muted); }
+    .contact-form .container { max-width: 600px; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+    }
+    .form-control:focus { outline: none; border-color: var(--accent-color); }
+    textarea.form-control { min-height: 150px; resize: vertical; }
+    footer { background-color: #111; color: #fff; padding: var(--spacing-lg) 0 var(--spacing-md); }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+    .footer-logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .footer-tagline { color: #888; }
+    .footer-links { display: flex; gap: var(--spacing-lg); justify-content: flex-end; }
+    .footer-links h4 { color: #fff; margin-bottom: 1rem; }
+    .footer-links ul li { margin-bottom: 0.5rem; }
+    .footer-links a { color: #888; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #333; padding-top: var(--spacing-md); text-align: center; color: #888; font-size: 0.875rem; }
+    @media (max-width: 768px) {
+      :root { --spacing-xl: 4rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .text-image .container, .text-image.reverse .container { grid-template-columns: 1fr; }
+      .text-image.reverse .container { direction: ltr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-links { justify-content: flex-start; flex-wrap: wrap; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Evoltron</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="page.html">Services</a></li>
+          <li><a href="page.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#contact" class="btn btn-primary">Get Started</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Accelerate Your Digital Growth</h1>
+        <p>Evoltron is a data-driven digital marketing agency helping modern brands scale through targeted campaigns and strategic insights.</p>
+        <div class="hero-actions">
+          <a href="#services" class="btn btn-primary">Explore Services</a>
+          <a href="#contact" class="btn btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+          <h2>Our Expertise</h2>
+          <p>Comprehensive digital marketing solutions designed to elevate your brand and drive measurable results.</p>
+        </div>
+        <div class="services-grid">
+          <div class="card">
+            <div class="card-icon">📈</div>
+            <h3>SEO Optimization</h3>
+            <p>Improve your search visibility and drive organic traffic with our technical and content-driven SEO strategies.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎯</div>
+            <h3>Performance Marketing</h3>
+            <p>Maximize your ROI with data-backed paid advertising campaigns across search and social platforms.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">✍️</div>
+            <h3>Content Strategy</h3>
+            <p>Engage your audience with compelling, high-quality content that builds trust and authority in your niche.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>Data Analytics</h3>
+            <p>Make informed decisions with comprehensive tracking, reporting, and conversion rate optimization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-image">
+      <div class="container">
+        <div class="text-content">
+          <h2>Data-Driven Decisions, Human-Centric Results</h2>
+          <p>At Evoltron, we believe that the best marketing combines rigorous data analysis with deep empathy for your customers. We don't just chase metrics; we build meaningful connections that translate into sustainable growth.</p>
+          <p>Our team of specialists works as an extension of your brand, bringing years of industry experience and a passion for innovation to every campaign.</p>
+          <br>
+          <a href="page.html" class="btn btn-primary">Learn About Our Approach</a>
+        </div>
+        <div class="image-content">
+          <img src="https://picsum.photos/seed/evoltron-team/600/400" alt="Evoltron Team Collaboration" referrerPolicy="no-referrer">
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container">
+        <h2>Ready to Scale Your Business?</h2>
+        <p>Partner with Evoltron and let's build a digital marketing strategy that delivers real, measurable growth for your brand.</p>
+        <a href="#contact" class="btn btn-secondary" style="background: #fff; color: var(--accent-color);">Schedule a Consultation</a>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="container">
+        <h2 style="text-align: center;">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-summary">What industries do you specialize in?</summary>
+            <div class="faq-content">We work with a diverse range of clients, but we have deep expertise in B2B SaaS, e-commerce, and professional services. Our data-driven approach allows us to adapt to various market dynamics.</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-summary">How long does it take to see results from SEO?</summary>
+            <div class="faq-content">SEO is a long-term strategy. While some technical fixes can yield quick wins, significant improvements in organic traffic typically take 3 to 6 months of consistent effort.</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-summary">Do you require long-term contracts?</summary>
+            <div class="faq-content">We typically recommend a minimum 6-month engagement to allow our strategies to take effect and provide meaningful data, but we also offer project-based consulting for specific needs.</div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-summary">How do you measure campaign success?</summary>
+            <div class="faq-content">We define clear KPIs at the start of every engagement, focusing on metrics that impact your bottom line, such as Cost Per Acquisition (CPA), Return on Ad Spend (ROAS), and overall conversion rates.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-form">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: var(--spacing-lg);">
+          <h2>Get in Touch</h2>
+          <p>Fill out the form below and one of our growth strategists will get back to you within 24 hours.</p>
+        </div>
+        <form action="#" method="POST">
+          <div class="form-group">
+            <label class="form-label" for="name">Full Name</label>
+            <input type="text" id="name" class="form-control" placeholder="Jane Doe" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" class="form-control" placeholder="jane@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input type="text" id="subject" class="form-control" placeholder="How can we help?" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea id="message" class="form-control" placeholder="Tell us about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Evoltron</div>
+          <p class="footer-tagline">Driving digital growth through data and creativity.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#">SEO Optimization</a></li>
+              <li><a href="#">Performance Marketing</a></li>
+              <li><a href="#">Content Strategy</a></li>
+              <li><a href="#">Data Analytics</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Evoltron Digital Marketing Agency. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights & News - Evoltron</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #FAFAFA;
+      --text-main: #111111;
+      --text-muted: #555555;
+      --accent-color: #0A2540;
+      --accent-hover: #004280;
+      --border-color: #EAEAEA;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --container-width: 1200px;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+      --spacing-xl: 6rem;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    p { margin-bottom: 1rem; color: var(--text-muted); }
+    a { color: var(--accent-color); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent-hover); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+    section { padding: var(--spacing-xl) 0; }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background-color: var(--accent-color); color: #fff; }
+    .btn-primary:hover { background-color: var(--accent-hover); color: #fff; }
+    .btn-secondary { background-color: transparent; color: var(--accent-color); border-color: var(--accent-color); }
+    .btn-secondary:hover { background-color: var(--accent-color); color: #fff; }
+    header {
+      padding: var(--spacing-md) 0;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-color);
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
+    nav ul { display: flex; gap: var(--spacing-md); align-items: center; }
+    nav a { color: var(--text-main); font-weight: 500; }
+    nav a:hover { color: var(--accent-color); }
+    .page-hero {
+      background-color: var(--accent-color);
+      color: #fff;
+      padding: var(--spacing-xl) 0;
+      text-align: center;
+    }
+    .page-hero h1 { color: #fff; margin-bottom: 0.5rem; }
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: var(--spacing-lg);
+    }
+    .filter-bar h4 {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+    .filter-bar ul li { margin-bottom: 0.5rem; }
+    .filter-bar a { color: var(--text-muted); }
+    .filter-bar a:hover, .filter-bar a.active { color: var(--accent-color); font-weight: 500; }
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--spacing-md);
+    }
+    .article-card {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .article-card:hover { transform: translateY(-5px); }
+    .article-img { width: 100%; height: 200px; object-fit: cover; }
+    .article-content { padding: var(--spacing-md); }
+    .article-meta {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .article-tag {
+      background: var(--border-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+    .article-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    footer { background-color: #111; color: #fff; padding: var(--spacing-lg) 0 var(--spacing-md); }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+    .footer-logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .footer-tagline { color: #888; }
+    .footer-links { display: flex; gap: var(--spacing-lg); justify-content: flex-end; }
+    .footer-links h4 { color: #fff; margin-bottom: 1rem; }
+    .footer-links ul li { margin-bottom: 0.5rem; }
+    .footer-links a { color: #888; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #333; padding-top: var(--spacing-md); text-align: center; color: #888; font-size: 0.875rem; }
+    @media (max-width: 768px) {
+      :root { --spacing-xl: 4rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-links { justify-content: flex-start; flex-wrap: wrap; }
+      nav ul { display: none; }
+      .blog-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Evoltron</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="page.html">Services</a></li>
+          <li><a href="page.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="index.html#contact" class="btn btn-primary">Get Started</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero" style="background-color: #f4f4f4; color: var(--text-main);">
+      <div class="container">
+        <h1 style="color: var(--text-main);">Insights & News</h1>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">The latest strategies, trends, and updates from the Evoltron team.</p>
+      </div>
+    </section>
+
+    <section class="blog-content">
+      <div class="container blog-layout">
+        <aside class="filter-bar">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#" class="active">All Articles</a></li>
+            <li><a href="#">SEO Strategy</a></li>
+            <li><a href="#">Paid Media</a></li>
+            <li><a href="#">Content Marketing</a></li>
+            <li><a href="#">Analytics & Data</a></li>
+            <li><a href="#">Agency News</a></li>
+          </ul>
+        </aside>
+        
+        <div class="article-grid">
+          <article class="article-card">
+            <img src="https://picsum.photos/seed/blog1/400/250" alt="SEO Trends" class="article-img" referrerPolicy="no-referrer">
+            <div class="article-content">
+              <div class="article-meta">
+                <span class="article-tag">SEO Strategy</span>
+                <span>Oct 12, 2026</span>
+              </div>
+              <h3 class="article-title">Top 5 SEO Trends to Watch in 2027</h3>
+              <p>Stay ahead of the algorithm updates with our comprehensive guide to the future of search engine optimization.</p>
+              <a href="#" style="font-weight: 500;">Read more &rarr;</a>
+            </div>
+          </article>
+          
+          <article class="article-card">
+            <img src="https://picsum.photos/seed/blog2/400/250" alt="PPC Campaigns" class="article-img" referrerPolicy="no-referrer">
+            <div class="article-content">
+              <div class="article-meta">
+                <span class="article-tag">Paid Media</span>
+                <span>Sep 28, 2026</span>
+              </div>
+              <h3 class="article-title">Maximizing ROAS on Paid Social</h3>
+              <p>Discover how to optimize your ad spend and improve conversion rates across major social platforms.</p>
+              <a href="#" style="font-weight: 500;">Read more &rarr;</a>
+            </div>
+          </article>
+          
+          <article class="article-card">
+            <img src="https://picsum.photos/seed/blog3/400/250" alt="Content Marketing" class="article-img" referrerPolicy="no-referrer">
+            <div class="article-content">
+              <div class="article-meta">
+                <span class="article-tag">Content</span>
+                <span>Sep 15, 2026</span>
+              </div>
+              <h3 class="article-title">Building a Content Engine</h3>
+              <p>Learn how to scale your content production without sacrificing quality or brand voice.</p>
+              <a href="#" style="font-weight: 500;">Read more &rarr;</a>
+            </div>
+          </article>
+          
+          <article class="article-card">
+            <img src="https://picsum.photos/seed/blog4/400/250" alt="Data Analytics" class="article-img" referrerPolicy="no-referrer">
+            <div class="article-content">
+              <div class="article-meta">
+                <span class="article-tag">Analytics</span>
+                <span>Aug 30, 2026</span>
+              </div>
+              <h3 class="article-title">Understanding GA4 Conversions</h3>
+              <p>A deep dive into tracking meaningful user interactions in the latest version of Google Analytics.</p>
+              <a href="#" style="font-weight: 500;">Read more &rarr;</a>
+            </div>
+          </article>
+          
+          <article class="article-card">
+            <img src="https://picsum.photos/seed/blog5/400/250" alt="B2B Marketing" class="article-img" referrerPolicy="no-referrer">
+            <div class="article-content">
+              <div class="article-meta">
+                <span class="article-tag">Strategy</span>
+                <span>Aug 12, 2026</span>
+              </div>
+              <h3 class="article-title">The B2B Buyer Journey</h3>
+              <p>How to map your marketing touchpoints to the complex decision-making process of B2B buyers.</p>
+              <a href="#" style="font-weight: 500;">Read more &rarr;</a>
+            </div>
+          </article>
+          
+          <article class="article-card">
+            <img src="https://picsum.photos/seed/blog6/400/250" alt="Agency Life" class="article-img" referrerPolicy="no-referrer">
+            <div class="article-content">
+              <div class="article-meta">
+                <span class="article-tag">Agency News</span>
+                <span>Jul 22, 2026</span>
+              </div>
+              <h3 class="article-title">Evoltron Wins Industry Award</h3>
+              <p>We are thrilled to announce that our team has been recognized for excellence in digital strategy.</p>
+              <a href="#" style="font-weight: 500;">Read more &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Evoltron</div>
+          <p class="footer-tagline">Driving digital growth through data and creativity.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#">SEO Optimization</a></li>
+              <li><a href="#">Performance Marketing</a></li>
+              <li><a href="#">Content Strategy</a></li>
+              <li><a href="#">Data Analytics</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Evoltron Digital Marketing Agency. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
