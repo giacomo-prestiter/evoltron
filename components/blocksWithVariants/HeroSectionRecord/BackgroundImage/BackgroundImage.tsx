@@ -24,39 +24,51 @@ const BackgroundImageHero = ({ fragment }: Props) => {
     : null;
 
   return (
-    <div
-      className="mt-20 h-[48rem] w-full bg-cover bg-center object-cover"
+    <section
+      className="relative flex min-h-screen w-full items-center justify-center bg-cover bg-center"
       style={{
-        backgroundSize: 'cover',
-        backgroundImage: `url('${heroResponsiveImage?.src}')`,
+        backgroundImage: heroResponsiveImage?.src
+          ? `url('${heroResponsiveImage.src}')`
+          : 'linear-gradient(135deg, #0A2540 0%, #004280 100%)',
       }}
     >
-      <div className="flex h-full w-full flex-col items-center justify-center bg-gray-900/30 px-8 lg:px-32">
-        <div className="flex flex-col items-center gap-8 text-center">
-          <h1 className="text-7xl font-bold text-white">{heroTitle}</h1>
-          <div className="leading-relaxed text-white xl:text-xl">
-            <ReactMarkdown>{heroSubtitle || ''}</ReactMarkdown>
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/55" />
+
+      <div className="relative z-10 mx-auto max-w-[1200px] px-8 py-32 text-center">
+        <h1 className="mb-6 text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+          {heroTitle}
+        </h1>
+        {heroSubtitle && (
+          <div className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-white/80">
+            <ReactMarkdown>{heroSubtitle}</ReactMarkdown>
           </div>
-          <div className="flex gap-4">
-            {buttons.map((button) => {
-              const primary =
-                'inline-block rounded-lg bg-primary/90 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base';
-              const secondary =
-                'inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base';
-              return (
+        )}
+        {buttons.length > 0 && (
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            {buttons.map((button, i) =>
+              i === 0 ? (
                 <a
                   key={button.id}
-                  className={button.primary ? primary : secondary}
                   href={button.url || '#'}
+                  className="rounded px-8 py-3 text-base font-medium text-[#0A2540] bg-white transition-colors hover:bg-[#f0f0f0]"
                 >
                   {button.label}
                 </a>
-              );
-            })}
+              ) : (
+                <a
+                  key={button.id}
+                  href={button.url || '#'}
+                  className="rounded border border-white px-8 py-3 text-base font-medium text-white transition-colors hover:bg-white/10"
+                >
+                  {button.label}
+                </a>
+              ),
+            )}
           </div>
-        </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 };
 
